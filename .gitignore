@@ -1,0 +1,11 @@
+*.class
+build/
+build/*
+.idea/*
+*.iws
+/out/
+.idea/
+.idea
+.idea/*.*
+.ipr
+*.iml
