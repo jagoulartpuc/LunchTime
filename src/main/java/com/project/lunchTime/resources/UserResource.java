@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
-
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/users")
@@ -26,15 +24,32 @@ public class UserResource {
         this.service = service;
     }
 
+    //Vai para tela principal do CRUD aonde são listados todos os usuarios
     @GetMapping
-    public List<User> findAll() {
-     return service.findAll();
+    public ModelAndView findAll() {
+        ModelAndView modelAndView = new ModelAndView("/users");
+        modelAndView.addObject("users", service.findAll());
+
+        return modelAndView;
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody User user) {
+    //Vai para tela de novo usuario
+    @GetMapping("/new-user")
+    public ModelAndView newUser(User user) {
+
+        //createUser e o nome do aquivo html
+        ModelAndView modelAndView = new ModelAndView("/createUser");
+        modelAndView.addObject("user", user);
+
+        return modelAndView;
+    }
+
+    @PostMapping("/save")
+    public ModelAndView create(User user) {
+
         service.create(user);
+
+        return findAll();
     }
 
 

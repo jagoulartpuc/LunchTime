@@ -32,9 +32,9 @@ public class RestaurantResource {
         return service.findAll();
     }
 
-    @GetMapping(value = "/test/{id}")
-    public String test(@PathVariable("id") String txt) {
-        return "test".concat(txt);
+    @GetMapping(value = "/search")
+    public List<Restaurant> search() {
+        return service.search();
     }
 
     @PostMapping

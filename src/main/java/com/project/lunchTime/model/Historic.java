@@ -3,8 +3,9 @@ package com.project.lunchTime.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -16,11 +17,18 @@ public class Historic {
     @Id
     @GeneratedValue(strategy= IDENTITY)
     private Long id;
-    private Long restId;
-    private Long userId;
+
+    @ManyToOne
+    @JoinColumn(name = "restaurantId", nullable = false)
+    private Restaurant restaurant;
+
+    @ManyToOne
+    @JoinColumn(name = "userId", nullable = false)
+    private User user;
+
     private Date date;
     private int week;
-
+    private int monthNumber;
 
     public Long getId() {
         return id;
@@ -30,20 +38,20 @@ public class Historic {
         this.id = id;
     }
 
-    public Long getRestId() {
-        return restId;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setRestId(Long restId) {
-        this.restId = restId;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
-    public Long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getDate() {
@@ -60,6 +68,14 @@ public class Historic {
 
     public void setWeek(int week) {
         this.week = week;
+    }
+
+    public int getMonthNumber() {
+        return monthNumber;
+    }
+
+    public void setMonthNumber(int monthNumber) {
+        this.monthNumber = monthNumber;
     }
 }
 
