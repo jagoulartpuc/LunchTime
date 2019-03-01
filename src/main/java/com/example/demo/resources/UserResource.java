@@ -20,7 +20,7 @@ public class UserResource {
         User user1 = new User(1, "Joao");
         list.add(user1);
 
-        User user2 = new User(2, "Maria");
+        User user2 = new User(2, "Maria 2");
         list.add(user2);
 
 
